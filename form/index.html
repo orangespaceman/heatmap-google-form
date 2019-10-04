@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Attendee form
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../_assets/css/form.css">
+  </head>
+  <body>
+    <main class="Wrapper">
+      <div class="Flipper">
+
+        <div class="Welcome">
+          <button class="Welcome-toggle">
+            <img class="Welcome-logo" src="../logo.png" alt="" />
+            <h1 class="Welcome-title">Welcome!</h1>
+            <p class="Welcome-text">Please tap here to tell us where you've come from</p>
+          </button>
+        </div>
+
+        <form class="Form" action="">
+          <img class="Form-logo" src="../logo.png" alt="" />
+          <div class="Form-row">
+            <label class="Form-label" for="postcode">
+              What is your postcode?
+            </label>
+            <input class="Form-input" type="text" id="postcode" placeholder="" maxlength="8" required>
+          </div>
+          <div class="Form-row">
+            <label class="Form-label" for="attendees">
+              How many of you have come along today?
+            </label>
+            <input class="Form-input" type="number" step="1" min="1" max="100" id="attendees" value="" required>
+          </div>
+          <div class="Form-row">
+            <button class="Form-submit" disabled>Done</button>
+            <button type="button" class="Form-cancel">Cancel</button>
+          </div>
+
+          <p class="Form-complete">
+            Thank you!
+          </p>
+        </form>
+
+      </div>
+    </main>
+
+    <div class="Background">
+      <canvas class="Background-canvas"></canvas>
+    </div>
+
+    <script src="../config.js"></script>
+    <script src="../_assets/js/form.js"></script>
+    <script src="../_assets/js/particles.js"></script>
+  </body>
+</html>

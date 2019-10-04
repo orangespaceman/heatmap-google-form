@@ -1,0 +1,12 @@
+/* Make the map fill the window */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set the map height to define the size of the map element */
+#map {
+  height: 100%;
+}
