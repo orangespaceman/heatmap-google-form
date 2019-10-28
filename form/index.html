@@ -10,41 +10,37 @@
   </head>
   <body>
     <main class="Wrapper">
-      <div class="Flipper">
 
-        <div class="Welcome">
-          <button class="Welcome-toggle">
-            <img class="Welcome-logo" src="../logo.png" alt="" />
-            <h1 class="Welcome-title">Welcome!</h1>
-            <p class="Welcome-text">Please tap here to tell us where you've come from</p>
-          </button>
+      <div class="Welcome">
+        <img class="Welcome-logo" src="../logo.png" alt="" />
+        <h1 class="Welcome-title">Welcome!</h1>
+        <p class="Welcome-text">Please let us know where you've come from</p>
+      </div>
+
+      <form class="Form" action="">
+        <div class="Form-row">
+          <label class="Form-label" for="postcode">
+            What is your postcode?
+          </label>
+          <input class="Form-input" type="text" id="postcode" placeholder="" maxlength="8" required>
+        </div>
+        <div class="Form-row">
+          <label class="Form-label" for="attendees">
+            How many of you have come along today?
+          </label>
+          <input class="Form-input" type="number" step="1" min="1" max="100" id="attendees" value="" required>
+        </div>
+        <div class="Form-row">
+          <button class="Form-submit" disabled>Done</button>
+          <button type="button" class="Form-cancel">Cancel</button>
         </div>
 
-        <form class="Form" action="">
-          <img class="Form-logo" src="../logo.png" alt="" />
-          <div class="Form-row">
-            <label class="Form-label" for="postcode">
-              What is your postcode?
-            </label>
-            <input class="Form-input" type="text" id="postcode" placeholder="" maxlength="8" required>
-          </div>
-          <div class="Form-row">
-            <label class="Form-label" for="attendees">
-              How many of you have come along today?
-            </label>
-            <input class="Form-input" type="number" step="1" min="1" max="100" id="attendees" value="" required>
-          </div>
-          <div class="Form-row">
-            <button class="Form-submit" disabled>Done</button>
-            <button type="button" class="Form-cancel">Cancel</button>
-          </div>
+        <div class="Form-complete">
+          <h2 class="Form-completeTitle">Thank you!</h2>
+          <p class="Form-completeText">You will be added to our map shortly...</p>
+        </div>
+      </form>
 
-          <p class="Form-complete">
-            Thank you!
-          </p>
-        </form>
-
-      </div>
     </main>
 
     <div class="Background">

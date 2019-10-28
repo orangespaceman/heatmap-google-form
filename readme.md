@@ -25,8 +25,10 @@ The `id` field in the config should come from the URL of the form.
 The form should have four fields:
 
  - Postcode: This should be a text field
- - Attendees: This will be a number, probably between 1-10.
  - Lat and Lon: These fields should be optional. They won't be filled in by any users. Instead, [Postcodes.io](https://postcodes.io/) is used to geocode the postcode and retrieve a latitude and longitude.
+ - Attendees: This will be a number, probably between 1-10.
+
+The four inputs *must* be in this order: postcode, lat, lon, attendees.
 
 Find out the IDs for these four input fields to add to the config. The easiest way to do this is to use the browser's webdev inspector. See [this link](https://github.com/jsdevel/google-form) for detail. They will probably be named `entry.xxxxx`.
 

@@ -1,12 +1,114 @@
 /* Make the map fill the window */
+/* Defaults */
+
+html {
+  box-sizing:border-box;
+}
+
+*,
+:after,
+:before {
+  box-sizing:inherit;
+}
+
 html,
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+html {
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 /* Set the map height to define the size of the map element */
+
 #map {
   height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* stats */
+
+.stats {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 2;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.stats p {
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+/* log */
+
+.log {
+  position: absolute;
+  bottom: 1rem;
+  left: 33%;
+  right: 33%;
+  z-index: 2;
+  margin: 0;
+  max-height: 6rem;
+  overflow: scroll;
+  text-align: center;
+  list-style: none;
+}
+
+.log li {
+  background: rgba(255, 255, 255, 0.6);
+  width: auto;
+  margin-bottom: 0.2rem;
+  opacity: 0;
+  animation: log 6s linear 1;
+}
+
+@keyframes log {
+  0%, 75% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* timer */
+
+.timer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+  height: 0.5rem;
+  z-index: 2;
+}
+
+.timer.is-waiting::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: rgba(255, 128, 0, 0.8);
+
+  animation-name: timer;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-direction: normal;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+@keyframes timer {
+  from { width: 0; }
+  to { width: 100%; }
 }

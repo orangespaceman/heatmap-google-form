@@ -7,7 +7,6 @@
   // https://www.codeproject.com/tips/721795/store-your-form-data-in-google-spreadsheet
 
   var wrapperEl;
-  var toggleEl;
   var formEl;
   var cancelEl;
   var inputEls;
@@ -15,25 +14,19 @@
 
   function init() {
     wrapper = document.querySelector('.Wrapper');
-    toggleEl = document.querySelector('.Welcome-toggle');
     formEl = document.querySelector('.Form');
     submitEl = formEl.querySelector('.Form-submit');
     cancelEl = formEl.querySelector('.Form-cancel');
     inputEls = formEl.querySelectorAll('.Form-input');
     postcodeEl = formEl.querySelector('#postcode');
 
-    toggleEl.addEventListener('click', showForm);
-    cancelEl.addEventListener('click', hideForm);
+    cancelEl.addEventListener('click', resetForm);
     formEl.addEventListener('submit', handleFormSubmit);
 
     inputEls.forEach(function(inputEl) {
       inputEl.addEventListener('input', checkInputValidity);
     });
-  }
 
-  function showForm(e) {
-    e.preventDefault();
-    wrapper.classList.add('is-focused');
     inputEls[0].focus();
   }
 
@@ -121,21 +114,14 @@
 
   function showSuccess() {
     formEl.classList.add('is-complete');
-    setTimeout(hideForm, 3000);
-  }
-
-  function hideForm(e) {
-    if (e && e.preventDefault) {
-      e.preventDefault();
-    }
-    wrapper.classList.remove('is-focused');
-    setTimeout(resetForm, 1000);
+    setTimeout(resetForm, 2000);
   }
 
   function resetForm() {
     formEl.classList.remove('is-complete');
     formEl.reset();
     checkInputValidity();
+    inputEls[0].focus();
   }
 
   document.addEventListener('DOMContentLoaded', init);

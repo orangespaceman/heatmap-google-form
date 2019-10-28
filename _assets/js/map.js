@@ -5,6 +5,11 @@
   var heat;
   var hotspotCount = 0;
 
+  var timerEl;
+  var statPostcodesEl;
+  var statAttendeesEl;
+  var logEl;
+
   var options = {
     minOpacity: config.map.minOpacity,
     radius: config.map.radius,
@@ -12,11 +17,19 @@
   };
 
   function init() {
+    findEls();
     createMap();
     loadData();
 
     // uncomment to test random heatmap population
     // setTimeout(addRandomPoint, 1000);
+  }
+
+  function findEls() {
+    timerEl = document.querySelector('.timer');
+    statPostcodesEl = document.querySelector('.stat-postcodes');
+    statAttendeesEl = document.querySelector('.stat-attendees');
+    logEl = document.querySelector('.log');
   }
 
   function createMap() {
@@ -30,6 +43,8 @@
   }
 
   function loadData() {
+    timerEl.classList.remove('is-waiting');
+
     var url = 'https://sheets.googleapis.com/v4/spreadsheets/' + config.spreadsheet.id + '/values/' + config.spreadsheet.sheet + '!' + config.spreadsheet.range + '?key=' + config.spreadsheet.apiKey;
 
     request = new XMLHttpRequest();
@@ -57,16 +72,42 @@
         }
       }
 
-      // update every minute
+      // update every 30 seconds
       setTimeout(loadData, 1000 * 30);
+      timerEl.classList.add('is-waiting');
     }
   }
 
   function updateMap(hotspots) {
-    console.log(hotspots);
     hotspots.forEach(function(hotspot) {
+      logHotspot(hotspot);
+
+      // remove postcode from data prior to plotting on map
+      hotspot.shift();
       heat.addLatLng(hotspot);
     });
+  }
+
+  // hotspot array order: [postcode, lat, lon, attendees]
+  function logHotspot(hotspot) {
+    var postcodeValue = parseInt(statPostcodesEl.textContent, 10);
+    statPostcodesEl.textContent = postcodeValue + 1;
+
+    var attendeesValue = parseInt(statAttendeesEl.textContent, 10);
+    statAttendeesEl.textContent = attendeesValue + parseInt(hotspot[3], 10);
+
+    var logItemEl = document.createElement("li");
+    var logItemText = document.createTextNode(hotspot[0] + " added");
+    logItemEl.appendChild(logItemText);
+    logEl.appendChild(logItemEl);
+
+    setTimeout(emptyLog, 1000 * 10);
+  }
+
+  function emptyLog() {
+    while (logEl.firstChild) {
+      logEl.removeChild(logEl.firstChild);
+    }
   }
 
   // test heatmap
